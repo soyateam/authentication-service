@@ -3,8 +3,8 @@ import * as jwt from 'jsonwebtoken';
 import * as express from 'express';
 
 import { NotFoundError, NotPermittedError } from "../utils/errors/user";
-import { IUser } from "../user/user.interface"
-import { AdminManager } from "../admin/admin.manager";
+import { IUser } from "../user/user.karttofel.interface"
+import { VipManager } from "../vip/vip.manager";
 import { setShragaStrategy } from "../strategies/shraga";
 import { config } from '../config';
 
@@ -39,7 +39,7 @@ export class AuthenticationHandler {
 
         if (!parsedUser) throw new NotFoundError();
 
-        const admin = await AdminManager.isAdmin(parsedUser.id);
+        const admin = await VipManager.getVipByID(parsedUser.id);
         if (!admin) throw new NotPermittedError();
 
         const userWithRole = {
