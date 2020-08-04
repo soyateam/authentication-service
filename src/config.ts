@@ -15,7 +15,7 @@ export const config = {
     useEnrichId: true,
     secret: process.env.SECRET_KEY || 'iamsososecret!youcaneverguess',
     daysExpires: 3,
-    token: process.env.TOKEN || 'token',
+    token: process.env.TOKEN_KEY || 'token',
   },
   mongo: {
     connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://mongo:27017',

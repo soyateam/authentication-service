@@ -11,7 +11,7 @@ services:
       AUTH_CALLBACK_URL: 'http://localhost:3000/auth/callback'
       SHRAGA_URL: 'http://13.79.7.3'
       SECRET_KEY: 'iamsososecret!youcaneverguess'
-      TOKEN: 'token'
+      TOKEN_KEY: 'token'
       MONGO_CONNECTION_STRING: 'mongodb://mongo:27017'
       DB_NAME: 'task'
       CLIENT_ENDPOINT: 'http://localhost:80/'
