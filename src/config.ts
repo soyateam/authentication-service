@@ -18,8 +18,8 @@ export const config = {
     token: process.env.TOKEN_KEY || 'token',
   },
   mongo: {
-    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://mongo:27017',
-    dbName: process.env.DB_NAME || 'task'
+    connectionString:
+      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.MONGO_URL}` || 'mongodb://mongo:27017',
   },
   clientEndpoint: process.env.CLIENT_ENDPOINT || 'http://localhost:80/',
 };

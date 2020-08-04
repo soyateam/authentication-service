@@ -3,6 +3,6 @@ import { Server } from './server';
 import { config } from "./config";
 
 (async () => {
-  await mongoose.connect(`${config.mongo.connectionString}/${config.mongo.dbName}`, { useNewUrlParser: true });
+  await mongoose.connect(config.mongo.connectionString, { useNewUrlParser: true });
   Server.startServer();
 })();
