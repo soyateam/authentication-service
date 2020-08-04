@@ -1,2 +1,2 @@
 # authentication-service
-super secret
+super secret service
