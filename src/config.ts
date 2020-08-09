@@ -10,11 +10,12 @@ export const config = {
     secret: process.env.SESSION_SECRET || 'very-secret',
   },
   authentication: {
-    callbackURL: process.env.AUTH_CALLBACK_URL || 'http://localhost:3000/auth/callback',
-    shragaURL: process.env.SHRAGA_URL || 'http://13.79.7.3',
-    useEnrichId: true,
+    shraga: {
+      callbackURL: process.env.AUTH_CALLBACK_URL || 'http://localhost:3000/auth/callback',
+      shragaURL: process.env.SHRAGA_URL || 'http://13.79.7.3',
+      useEnrichId: true,
+    },
     secret: process.env.SECRET_KEY || 'iamsososecret!youcaneverguess',
-    daysExpires: 3,
     token: process.env.TOKEN_KEY || 'token',
   },
   mongo: {

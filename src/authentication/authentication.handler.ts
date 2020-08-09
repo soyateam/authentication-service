@@ -29,9 +29,9 @@ export class AuthenticationHandler {
         done(undefined, jwt.decode(token));
     }
 
-    static isLoggedIn(req: express.Request, res: express.Response, next: express.NextFunction) {
-        if (req.user) {
-            AuthenticationHandler.redirectUser(req, res);
+    static async isLoggedIn(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (req.cookies.token) {
+            res.redirect(config.clientEndpoint);
         } else {
             next();
         }
