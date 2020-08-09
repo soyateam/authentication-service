@@ -21,6 +21,7 @@ export class Server {
     this.configurationMiddleware();
     this.initializeErrorHandler();
     this.initializeShragaAuthenticator();
+    this.initializeHealthcheck();
     this.app.listen(config.server.port, () => {
       logger.log(`listening on port ${config.server.port}`);
     });
@@ -58,5 +59,11 @@ export class Server {
 
     AuthenticationHandler.initialize(this.app);
     this.app.use('/auth/', AuthenticationRouter);
+  }
+
+  private initializeHealthcheck() {
+    this.app.get('/isAlive', (req: express.Request, res: express.Response) => {
+      res.status(200).send('OK');
+    });
   }
 }

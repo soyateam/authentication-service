@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import * as express from 'express';
 
 import { NotFoundError, NotPermittedError } from "../utils/errors/user";
-import { IUser } from "../user/user.karttofel.interface"
+import { IUser } from "../user/user.interface"
 import { VipManager } from "../vip/vip.manager";
 import { setShragaStrategy } from "../strategies/shraga";
 import { config } from '../config';
@@ -29,6 +29,14 @@ export class AuthenticationHandler {
         done(undefined, jwt.decode(token));
     }
 
+    static isLoggedIn(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (req.user) {
+            AuthenticationHandler.redirectUser(req, res);
+        } else {
+            next();
+        }
+    }
+
     static authenticate() {
         return passport.authenticate('shraga');
     }
@@ -39,12 +47,12 @@ export class AuthenticationHandler {
 
         if (!parsedUser) throw new NotFoundError();
 
-        const admin = await VipManager.getVipByID(parsedUser.id);
-        if (!admin) throw new NotPermittedError();
+        const vip = await VipManager.getVipByID(parsedUser.id);
+        if (!vip) throw new NotPermittedError();
 
         const userWithRole = {
             ...parsedUser,
-            role: admin.role
+            role: vip.role
         }
 
         const token = jwt.sign(userWithRole, config.authentication.secret);

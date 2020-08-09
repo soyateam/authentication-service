@@ -9,13 +9,13 @@ services:
       PORT: 3000
       SESSION_SECRET: 'very-secret'
       AUTH_CALLBACK_URL: 'http://localhost:3000/auth/callback'
-      SHRAGA_URL: 'http://13.79.7.3'
+      SHRAGA_URL: 'http://shraga'
       SECRET_KEY: 'iamsososecret!youcaneverguess'
       TOKEN_KEY: 'token'
-      MONGO_CONNECTION_STRING: 'mongodb://mongo:27017'
       DB_NAME: 'task'
       CLIENT_ENDPOINT: 'http://localhost:80/'
     depends_on:
       - mongo
   mongo:
     image: 'mongo:latest'
+    
