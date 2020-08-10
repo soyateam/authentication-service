@@ -7,9 +7,8 @@ import { VipManager } from "../vip/vip.manager";
 import { config } from '../config';
 
 export class AuthenticationHandler {
-    static async isLoggedIn(req: Request, res: Response, next: NextFunction) {
+    static async handleLoggedIn(req: Request, res: Response, next: NextFunction) {
         if (req.cookies.token && jwt.verify(req.cookies.token, config.authentication.secret)) {
-            console.log("dsgfdsgd")
             res.redirect(config.clientEndpoint);
         } else {
             next();
