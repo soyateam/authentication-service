@@ -6,8 +6,8 @@ import * as session from 'express-session';
 import { config } from './config';
 import { userErrorHandler, serverErrorHandler, unknownErrorHandler } from './utils/errors/handler';
 import { logger } from './utils/logger/logger';
-import { AuthenticationHandler } from './authentication/authentication.handler';
-import { AuthenticationRouter } from './authentication/authentication.router';
+import { PassportHandler } from './passport/passport.handler';
+import { Router } from './router';
 
 export class Server {
   public app: express.Application;
@@ -21,7 +21,9 @@ export class Server {
     this.configurationMiddleware();
     this.initializeErrorHandler();
     this.initializeShragaAuthenticator();
-    this.initializeHealthcheck();
+
+    this.app.use(Router);
+    
     this.app.listen(config.server.port, () => {
       logger.log(`listening on port ${config.server.port}`);
     });
@@ -57,13 +59,6 @@ export class Server {
       saveUninitialized: true,
     }));
 
-    AuthenticationHandler.initialize(this.app);
-    this.app.use('/auth/', AuthenticationRouter);
-  }
-
-  private initializeHealthcheck() {
-    this.app.get('/isAlive', (req: express.Request, res: express.Response) => {
-      res.status(200).send('OK');
-    });
+    PassportHandler.initialize(this.app);
   }
 }
