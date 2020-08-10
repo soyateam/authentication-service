@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { ServerError, UserError } from './application';
 
-export function userErrorHandler(error: Error, req: express.Request, res: express.Response,
+export function userErrorHandler(error: Error, _req: express.Request, res: express.Response,
   next: express.NextFunction) {
   if (error instanceof UserError) {
     res.status(error.status).send({
@@ -14,7 +14,7 @@ export function userErrorHandler(error: Error, req: express.Request, res: expres
   }
 }
 
-export function serverErrorHandler(error: Error, req: express.Request, res: express.Response,
+export function serverErrorHandler(error: Error, _req: express.Request, res: express.Response,
   next: express.NextFunction) {
   if (error instanceof ServerError) {
     res.status(error.status).send({
@@ -27,7 +27,7 @@ export function serverErrorHandler(error: Error, req: express.Request, res: expr
   }
 }
 
-export function unknownErrorHandler(error: Error, req: express.Request, res: express.Response,
+export function unknownErrorHandler(error: Error, _req: express.Request, res: express.Response,
   next: express.NextFunction) {
   res.status(500).send({
     type: error.name,

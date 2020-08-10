@@ -42,7 +42,7 @@ export class AuthenticationHandler {
     }
 
     static async redirectUser(req: express.Request, res: express.Response) {
-        const { user } = req;
+        const user = req.user;
         const parsedUser: IUser = JSON.parse(JSON.stringify(user));
 
         if (!parsedUser) throw new NotFoundError();

@@ -1,0 +1,26 @@
+version: '3.5'
+services:
+  authentication-service:
+    image: authentication-service
+    build: 
+      target: BUILD
+      context: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src/:/usr/src/app/data
+    command: npm run dev:watch
+    environment: 
+      PORT: 3000
+      SESSION_SECRET: very-secret
+      AUTH_CALLBACK_URL: http://localhost:3000/auth/callback
+      SHRAGA_URL: http://13.79.7.3
+      SECRET_KEY: iamsososecret!youcaneverguess
+      TOKEN_KEY: token
+      DB_NAME: task
+      CLIENT_ENDPOINT: http://localhost:80/
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    

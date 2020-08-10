@@ -6,7 +6,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "dev": "ts-node src/index.ts",
-    "dev:watch": "nodemon --exec ts-node -- ./src/index.js",
+    "dev:watch": "nodemon --exec ts-node -- ./dist/index.js",
     "start": "tsc && nodemon ./dist/index.js",
     "test": "npm run build && mocha --recursive  ./dist/**/*.spec.js"
   },

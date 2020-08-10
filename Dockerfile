@@ -1,8 +1,15 @@
-FROM node:12-alpine
-ENV NODE_ENV production
+FROM node:12-alpine as BUILD
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent
+COPY package*.json ./
+RUN npm install
 COPY . .
-EXPOSE 3000
-CMD npm start
+RUN npm run build
+
+FROM node:12-alpine as PROD
+WORKDIR /usr/src/app
+COPY --from=0 /usr/src/app/package.json /usr/src/app/package-lock.json ./
+COPY --from=0 /usr/src/app/dist ./dist
+COPY --from=0 /usr/src/app/utils ./utils
+RUN npm install
+EXPOSE 8080
+CMD ["npm", "start"]
