@@ -6,7 +6,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "dev": "ts-node src/index.ts",
-    "dev:watch": "nodemon --exec ts-node -- ./dist/index.js",
+    "dev:watch": "nodemon --exec ts-node -- ./src/index.ts",
     "start": "tsc && nodemon ./dist/index.js",
     "test": "npm run build && mocha --recursive  ./dist/**/*.spec.js"
   },
@@ -26,7 +26,9 @@
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-shraga": "^1.4.0",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.8",
@@ -38,6 +40,7 @@
     "@types/mocha": "^7.0.1",
     "@types/mongoose": "^5.7.0",
     "@types/passport": "^1.0.3",
+    "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",

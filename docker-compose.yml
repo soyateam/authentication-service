@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 services:
   authentication-service:
     image: authentication-service
     build: .
     ports:
-      - '3000:3000'
-    environment: 
+      - "3000:3000"
+    environment:
       PORT: 3000
       SESSION_SECRET: very-secret
       AUTH_CALLBACK_URL: http://localhost:3000/auth/callback
@@ -14,8 +14,10 @@ services:
       TOKEN_KEY: token
       DB_NAME: task
       CLIENT_ENDPOINT: http://localhost:80/
+      LOG_FILE_DIR: logs
+    volumes:
+      - ./logs:/usr/src/app/logs
     depends_on:
       - mongo
   mongo:
     image: mongo:latest
-    

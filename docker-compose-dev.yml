@@ -1,16 +1,16 @@
-version: '3.5'
+version: "3.5"
 services:
   authentication-service:
     image: authentication-service
-    build: 
-      target: BUILD
+    build:
+      target: DEV
       context: .
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
-      - ./src/:/usr/src/app/data
+      - ./src:/usr/src/app/src
     command: npm run dev:watch
-    environment: 
+    environment:
       PORT: 3000
       SESSION_SECRET: very-secret
       AUTH_CALLBACK_URL: http://localhost:3000/auth/callback
@@ -23,4 +23,3 @@ services:
       - mongo
   mongo:
     image: mongo:latest
-    
