@@ -11,4 +11,4 @@ COPY --from=0 /usr/src/app/package.json /usr/src/app/package-lock.json ./
 COPY --from=0 /usr/src/app/dist ./dist
 RUN npm install
 EXPOSE 8080
-CMD ["npm", "start"]
+CMD ["node", "/usr/src/app/dist/index.js"]
