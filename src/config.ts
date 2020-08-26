@@ -11,7 +11,6 @@ export const config = {
   },
   authentication: {
     shraga: {
-      callbackURL: process.env.AUTH_CALLBACK_URL || 'http://localhost:3000/auth/callback',
       shragaURL: process.env.SHRAGA_URL || 'http://13.79.7.3',
       useEnrichId: true,
     },

@@ -8,7 +8,6 @@ services:
     environment:
       PORT: 3000
       SESSION_SECRET: very-secret
-      AUTH_CALLBACK_URL: http://localhost:3000/auth/callback
       SHRAGA_URL: http://13.79.7.3
       SECRET_KEY: iamsososecret!youcaneverguess
       TOKEN_KEY: token
