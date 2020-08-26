@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
 import { NotFoundError, NotPermittedError } from "../utils/errors/user";
 import { IUser } from "../user/user.interface"
@@ -7,14 +7,6 @@ import { VipManager } from "../vip/vip.manager";
 import { config } from '../config';
 
 export class AuthenticationHandler {
-    static async handleLoggedIn(req: Request, res: Response, next: NextFunction) {
-        if (req.cookies.token && jwt.verify(req.cookies.token, config.authentication.secret)) {
-            res.redirect(config.clientEndpoint);
-        } else {
-            next();
-        }
-    }
-
     static async redirectUser(req: Request, res: Response) {
         const user = req.user;
         const parsedUser: IUser = JSON.parse(JSON.stringify(user));
