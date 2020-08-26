@@ -3,6 +3,11 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
+  serviceName: 'auth-service',
+  logs: {
+    connectionStringLogs: process.env.MONGO_CONNECTION_STRING_LOGS || 'mongodb://mongo:27017/logs',
+    expiredInSec: 2592000, // 30 days
+  },
   server: {
     port: process.env.PORT || 3000,
   },
@@ -19,7 +24,7 @@ export const config = {
     token: process.env.TOKEN_KEY || 'token',
   },
   mongo: {
-    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://mongo:27017'
+    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://mongo:27017',
   },
   clientEndpoint: process.env.CLIENT_ENDPOINT || 'http://localhost:80/',
 };

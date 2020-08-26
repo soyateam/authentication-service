@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "watch": "tsc --watch",
-    "dev": "ts-node src/index.ts",
-    "dev:watch": "nodemon --exec ts-node -- ./dist/index.js",
-    "start": "tsc && nodemon ./dist/index.js",
-    "test": "npm run build && mocha --recursive  ./dist/**/*.spec.js"
+    "build:watch": "tsc --watch",
+    "dev": "tsc-watch --project . --onSuccess \"node dist/index.js\"",
+    "install:prod": "npm install --production"
   },
   "author": "",
   "license": "ISC",
@@ -23,10 +22,11 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^7.0.1",
     "mongoose": "^5.8.11",
-    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-shraga": "^1.4.0",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.8",
@@ -38,6 +38,7 @@
     "@types/mocha": "^7.0.1",
     "@types/mongoose": "^5.7.0",
     "@types/passport": "^1.0.3",
+    "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
@@ -45,7 +46,6 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^1.19.1",
-    "ts-node": "^8.6.2"
+    "prettier": "^1.19.1"
   }
 }
