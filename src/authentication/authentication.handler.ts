@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 import { NotFoundError, NotPermittedError } from "../utils/errors/user";
 import { IUser } from "../user/user.interface"
-import { VipManager } from "../vip/vip.manager";
+import { VipRepository } from "../vip/vip.repository";
 import { config } from '../config';
 
 export class AuthenticationHandler {
@@ -13,7 +13,7 @@ export class AuthenticationHandler {
 
         if (!parsedUser) throw new NotFoundError();
 
-        const vip = await VipManager.getVipByID(parsedUser.id);
+        const vip = await VipRepository.getVipByID(parsedUser.id);
         if (!vip) throw new NotPermittedError();
 
         const userWithRole = {

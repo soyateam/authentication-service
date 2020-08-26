@@ -1,5 +1,6 @@
 version: '3'
 services:
+  
   authentication-service:
     image: authentication-service
     build: .
@@ -12,13 +13,10 @@ services:
       SHRAGA_URL: http://13.79.7.3
       SECRET_KEY: iamsososecret!youcaneverguess
       TOKEN_KEY: token
-      DB_NAME: task
       CLIENT_ENDPOINT: http://localhost:80/
-      LOG_FILE_DIR: logs
-    volumes:
-      - ./logs:/usr/src/app/logs
     depends_on:
       - mongo
+
   mongo:
     image: mongo:latest
     ports:

@@ -1,4 +1,4 @@
-import VipModel from "./vip.model";
+import { VipModel } from "./vip.model";
 
 export class VipRepository {
     public static getVipByID(id: string) {

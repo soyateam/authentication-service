@@ -14,4 +14,4 @@ const VipSchema: mongoose.Schema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model<IUser & mongoose.Document>("Vip", VipSchema);
+export const VipModel = mongoose.model<IUser & mongoose.Document>("vip", VipSchema);
