@@ -18,7 +18,7 @@ services:
       SECRET_KEY: iamsososecret!youcaneverguess
       TOKEN_KEY: token
       DB_NAME: task
-      CLIENT_ENDPOINT: http://localhost:80/
+      CLIENT_ENDPOINT: http://localhost:4200/
     depends_on:
       - mongo
   mongo:
